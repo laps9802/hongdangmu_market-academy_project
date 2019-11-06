@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Uncomment and your base-package here:
+         <context:component-scan
+            base-package="org.springframework.samples.web"/>  -->
+
+
+    <mvc:annotation-driven />
+
+	<context:component-scan base-package="users"/>
+	<context:component-scan base-package="goods_board"/>
+	<context:component-scan base-package="int_tbl"/>
+	<context:component-scan base-package="review"/>
+	<context:component-scan base-package="buy_tbl"/>
+	<context:component-scan base-package="msg"/>
+	<context:component-scan base-package="Purchase_list"/>
+	
+	<mvc:resources location="/script/" mapping="/script/**"/>
+	<mvc:resources location="/img/" mapping="/img/**"/>
+	<mvc:resources mapping="/js/**" location="/js/"/>
+	<!-- storage 폴더 등록 -->
+	<mvc:resources location="/storage/" mapping="/storage/**"/>
+	<!-- 어노테이션 설정 -->
+
+	<!-- multipartResolver 등록 : id는 반드시 "multipartResolver" 이어야 함-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property value="5000000" name="maxUploadSize"/>
+		<property value="UTF-8" name="defaultEncoding"/>
+		<property value="true" name="preserveFilename"/>
+	</bean>
+</beans>

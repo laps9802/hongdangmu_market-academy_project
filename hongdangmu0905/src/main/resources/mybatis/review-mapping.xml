@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.reviewMapper">
+	<insert id="write" parameterType="reviewDTO">
+		insert into review values(#{seller}, #{buyer}, 
+		#{content}, #{reviewer},sysdate)
+	</insert>
+	<select id="listS" resultType="reviewDTO" parameterType="String">
+		select * from review where buyer = #{buyer} and reviewer = 'sell'and content is not null
+	</select>
+	<select id="listB" resultType="reviewDTO" parameterType="String">
+		select * from review where seller = #{seller} and reviewer = 'buy'and content is not null
+	</select>
+	<select id="selectList" resultType="reviewDTO" parameterType="String">
+		select * from review where ((buyer = #{user_name} and reviewer = 'sell') 
+		or (seller = #{user_name} and reviewer = 'buy'))and content is not null
+	</select>
+	<update id="updateNameB" parameterType="java.util.Map">
+	UPDATE review set buyer = #{muser_name} where buyer = #{user_name}
+	</update>
+	<update id="updateNameS" parameterType="java.util.Map">
+	UPDATE review set seller = #{muser_name} where seller = #{user_name}
+	</update>
+</mapper>

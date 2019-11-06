@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Market</string>
+    <string name="choice1"><b>홈 화면에서 보고 싶은 카테고리는</b></string>
+    <string name="choice2"><b>체크 하세요.</b></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="FACEBOOK_APP_ID">505860699979445</string>
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">bfa0060e1e1ab95f9a0b4103ad2e2f95</string>
+</resources>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".frag.WriteActivity">
+    <!-- 글쓰기 -->
+    <EditText
+        android:id="@+id/write_subject_edit"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:gravity="center_vertical"
+        android:hint="제목"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/com_accountkit_whatsapp_enable_border" />
+
+    <TextView
+        android:id="@+id/write_category_tv"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:gravity="center_vertical"
+        android:text="카테고리"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/com_accountkit_whatsapp_enable_border" />
+
+    <TextView
+        android:id="@+id/write_area_tv"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:gravity="center_vertical"
+        android:text="지역"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/com_accountkit_whatsapp_enable_border" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/write_price_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:hint="가격"
+            android:inputType="number"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/write_image_layout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <ImageView
+            android:layout_weight="1"
+            android:id="@+id/write_select_imageView"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
+        <ImageView
+            android:visibility="gone"
+            android:layout_weight="1"
+            android:id="@+id/write_select_imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
+        <ImageView
+            android:visibility="gone"
+            android:layout_weight="1"
+            android:id="@+id/write_select_imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/write_content_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:hint="지역명에 올릴 게시글 내용을 작성해주세요. 가품 및 판매금지품목은 게시가 제한될 수 있어요."
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/write_photo_imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="10px"
+            android:layout_marginBottom="10px"
+            app:srcCompat="@android:drawable/ic_menu_camera" />
+
+        <TextView
+            android:id="@+id/write_upload_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10px"
+            android:text="0/3"
+            android:textColor="@color/com_accountkit_whatsapp_enable_border" />
+    </LinearLayout>
+</LinearLayout>

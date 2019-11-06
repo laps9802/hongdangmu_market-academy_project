@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".sub.ReviewWriteActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="40px">
+
+        <ImageView
+            android:id="@+id/imageView_image0"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/carrot" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="35px">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="거래한 상품"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:id="@+id/textView_board_subject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView_subject"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100px"
+        android:layout_marginBottom="100px"
+        android:cursorVisible="false"
+        android:gravity="center_horizontal"
+        android:text="어떠셨나요?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="40px"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView_bad_on"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/bad_on" />
+
+            <ImageView
+                android:id="@+id/imageView_bad_off"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:srcCompat="@drawable/bad_off" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="40px"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView_good_on"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/good_on" />
+
+            <ImageView
+                android:id="@+id/imageView_good_off"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:srcCompat="@drawable/good_off" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="40px"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView_excellent_on"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/excellent_on" />
+
+            <ImageView
+                android:id="@+id/imageView_excellent_off"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:srcCompat="@drawable/excellent_off" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_review"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="100px"
+            android:gravity="center_horizontal"
+            android:text="거래 후기를 작성해주세요"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <EditText
+            android:id="@+id/editText_review_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="여기에 거래 후기를 남겨주세요."
+            android:inputType="textMultiLine" />
+
+        <Button
+            android:id="@+id/button_review_complete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF8C00"
+            android:text="거래 후기 작성 완료"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</LinearLayout>

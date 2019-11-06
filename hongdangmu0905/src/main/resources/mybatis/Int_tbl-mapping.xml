@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.int_tblMapper">
+	<insert id="write" parameterType="int_tblDTO">
+		insert into int_tbl values(#{user_code},#{goods_num},sysdate)
+	</insert>
+	<delete id="delete" parameterType="java.util.Map">
+		delete from int_tbl where USER_CODE = #{user_code} and GOODS_NUM =#{goods_num}
+	</delete>
+	<select id="listG" resultType="int_tblDTO" parameterType="String">
+		<![CDATA[
+		select * from int_tbl where user_code = #{user_code} order by int_date desc
+		]]>
+	</select>
+	<select id="listU" resultType="int_tblDTO" parameterType="String">
+		<![CDATA[
+		select * from int_tbl where goods_num = #{goods_num} order by int_date desc
+		]]>
+	</select>
+	<select id="getTotalGoods" resultType="int" parameterType="String">
+		select count(*) as count from int_tbl where user_code = #{user_code}
+	</select>
+	<select id="getTotalUser" resultType="int" parameterType="String">
+		select count(*) as count from int_tbl where num = #{goods_num}
+	</select>
+	<select id="myInterestlist" resultType="int_tblDTO" parameterType="String">
+		select goods_num from int_tbl where user_code = #{user_code} order by int_date desc
+	</select>
+	<select id="interestList" resultType="goods_boardDTO" parameterType="int">
+		select * from goods_board where num = #{num}
+	</select>
+	<!-- 관심개수 + 1 -->
+	<update id="interestOn" parameterType="int">
+		update goods_board set interest_count = interest_count + 1 where num = #{num}
+	</update>
+	<!-- 관심 개수 -1 -->
+	<update id="interestOff" parameterType="int">
+		update goods_board set interest_count = interest_count - 1 where num = #{num}
+	</update>
+	
+	
+	<!-- 9월 2일 -->
+	<select id="listTF" resultType="int_tblDTO" parameterType="java.util.Map">
+		select * from int_tbl where user_code = #{user_code} and goods_num = #{num}
+	</select>
+</mapper>

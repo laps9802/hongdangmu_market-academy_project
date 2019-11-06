@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/app_bar_search"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search"
+        app:actionViewClass="android.widget.Spinner" />
+    <item
+        android:id="@+id/location_menuItem_search"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Item"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/location_menuItem_category"
+        android:icon="@android:drawable/btn_star_big_on"
+        android:title="Item"
+        app:showAsAction="always" />
+</menu>

@@ -1,0 +1,112 @@
+drop table users purge;
+drop table goods_board purge;
+drop table buy_tbl purge;
+drop table int_tbl purge;
+drop table msg purge;
+drop table review purge;
+drop sequence num_goods_board;
+drop sequence users_seq_num;
+drop sequence msg_seq;
+drop table reply purge;
+drop table purchase_list purge;
+commit;
+
+-- 1. 사용자
+create table users (
+    user_code number primary key,    -- 사용자 코드	
+    user_name varchar2(100) unique,   -- 사용자 닉네임
+    user_photo varchar2(500),         -- 프로필 사진
+    user_area varchar2(200),          -- 지역 
+    manner number default 0,         -- 평점	
+    reply_percent number default 0,  -- 응답률
+    sales_count number default 0,    -- 판매 개수
+    purchase_count number default 0, -- 구매 개수
+    interest_count number default 0, -- 관심목록 개수	
+    join_date date not null,         -- 가입 날짜
+    user_tel varchar2(50),           -- 사용자 전화번호
+    user_email1 varchar2(50),        -- 사용자 이메일1
+    user_email2 varchar2(50),        -- 사용자 이메일2
+    lat number,                      -- 위도       
+    lng number                       -- 경도
+);
+create sequence users_seq_num nocycle nocache;
+
+-- 2. 물품
+create table goods_board (
+    num number PRIMARY KEY,           -- 글 번호
+    image0 varchar2(500),       -- 상품 사진
+    image1 varchar2(500),       -- 상품 사진
+    image2 varchar2(500),       -- 상품 사진
+    user_name varchar2(200),                       -- 사용자 
+    subject varchar2(255) not null,   -- 글 제목
+    category_code varchar2(100) not null,    -- 물품분류
+    area varchar(100) not null,             -- 판매 지역
+    price number not null,            --상품 가격
+    content varchar2(4000) not null,  -- 글 내용
+    reply_count number default 0,           -- 댓글 갯수
+    interest_count number default 0,        -- 관심 갯수
+    readcount number default 0,       -- 조회수
+    lat number(38,34),                             -- 위도            
+    lng number(38,34),                             -- 경도
+    board_date date,                         -- 작성일
+    sell_tf varchar(20) default 'false',     -- 판매중(false) or 판매완료(true)
+    hide_tf varchar(20) default 'false',   -- 다시보이기(false) or 숨기기(true)
+    review_tf varchar(20) default 'false'  -- 후기 대기중(false) or 후기 작성 완료(true) 
+);
+create sequence num_goods_board nocache nocycle;
+
+-- 3. 물품을 살려는 사람들을 저장한 테이블
+create table buy_tbl(
+    user_code VARCHAR2(20),      -- 물품을 살 사람
+    goods_num VARCHAR2(20),      -- 물품 번호
+    buy_date DATE                -- 관심 등록 날짜
+);
+
+-- 4. 관심 목록 
+create table int_tbl(
+    user_code VARCHAR2(20),      -- 물품에 관심 있는 사람번호
+    goods_num VARCHAR2(20),      -- 관심있는 물품번호
+    int_date DATE                -- 관심 등록 날짜
+);
+
+-- 5. 채팅방 
+create table msg(
+    user_photo varchar2(500),
+    user_area varchar2(100),
+    bno number not null,        -- 글 번호
+    mno number primary key, --쪽지 번호
+    sender varchar2(50) not null,   -- 보낸 사람
+    recipient varchar2(50) not null, -- 받는 사람
+    msgTitle varchar2(150) not null, -- 쪽지 제목
+    msgContent varchar2(1000) not null, --쪽지 내용
+    msgDate date default sysdate  -- 보낸 날짜
+);
+create SEQUENCE msg_seq;
+-- 후기 목록
+create table review(
+    seller varchar2(50),            -- 판매자
+    buyer varchar2(50),            -- 구매자  
+    content varchar2(500),             -- 리뷰 내용
+    reviewer varchar2(100),      -- 판매자(sell),구매자(buy) 구분
+    review_date date                   -- 리뷰한 날짜
+);
+
+-- 댓글 
+create table reply(
+    user_photo varchar2(500),       -- 사진
+    area varchar(100),
+    rno NUMBER(10,0) primary key,    -- 답글 번호
+    bno number(10,0) not null,       -- 게시판 번호 
+    reply varchar2(1000)not null,    -- 답글 내용
+    user_name varchar2(50) not null,   -- 유저 닉네임
+    replyDate date default sysdate    -- 답글 날짜
+);
+
+-- 구매 목록?
+create table Purchase_list(
+    user_code VARCHAR2(20),      -- 물품을 산 사람
+    goods_num VARCHAR2(20),      -- 물품 번호
+    review_tf varchar2(10),     -- 리뷰 유무
+    buy_date DATE                -- 관심 등록 날짜
+);
+commit;

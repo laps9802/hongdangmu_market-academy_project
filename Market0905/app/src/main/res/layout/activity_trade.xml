@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".frag.TradeActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/trade_filter_layout"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="필터"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="20dp"/>
+        </LinearLayout>
+        <CheckBox
+            android:id="@+id/trade_tradeFinish_ch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="거래완료 안보기"/>
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/trade_list_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        ></android.support.v7.widget.RecyclerView>
+</LinearLayout>

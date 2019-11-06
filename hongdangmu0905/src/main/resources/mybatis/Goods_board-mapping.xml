@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.goods_boardMapper">
+	<insert id="boardWrite" parameterType="goods_boardDTO">
+		insert into goods_board values (num_goods_board.nextval, #{image0},#{image1},#{image2},#{user_name}, #{subject},#{category_code}, #{area}, #{price}, #{content}, #{reply_count},
+		#{interest_count}, #{readcount},#{lat},#{lng},sysdate, 'false', 'false', 'false')
+	</insert>
+	<insert parameterType="replyDTO" id="replyWrite">
+		insert into reply values (#{user_photo}, #{area},reply_seq.nextval, #{bno}, #{reply}, #{user_name}, sysdate)
+	</insert>
+	<delete id="boardDelete" parameterType="int">
+		delete goods_board where num=#{num}
+	</delete>
+	<update id="updateRC" parameterType="int">
+		update goods_board set readcount=readcount+1 where num=#{num}
+	</update>
+	<update id="updateIC" parameterType="int">
+		update goods_board set interest_count=interest_count+1 where num=#{num}
+	</update>
+	<update id="boardModify" parameterType="goods_boardDTO">
+		UPDATE goods_board set image0 =#{image0}, image1 =#{image1},image2 =#{image2},user_name=#{user_name},
+		subject=#{subject},category_code=#{category_code},area=#{area}
+		,price=#{price},content=#{content}, lng=#{lng},lat=#{lat} where num = #{num}
+	</update>
+	<update id="updateReC" parameterType="int">
+		update goods_board set reply_count = reply_count+1 where num = #{num}
+	</update>
+	<select id="boardView" resultType="goods_boardDTO" parameterType="int">
+		select * from GOODS_BOARD where num =#{num}
+	</select>
+	<select id="boardList" resultType="goods_boardDTO" parameterType="java.util.Map">
+		<![CDATA[
+		select * from(select rownum rn, tt.* from 
+		(select * from GOODS_BOARD order by num asc) tt) 
+		where rn>=#{startNum} and rn<=#{endNum}
+		]]>
+	</select>
+	<select id="list" resultType="goods_boardDTO" parameterType="category">
+		select * from goods_board where (category_code = #{category1} or category_code = #{category2}  or category_code = #{category3} or category_code = #{category4} or category_code = #{category5} or category_code = #{category6} or category_code = #{category7} or category_code = #{category8} or category_code = #{category9} or category_code = #{category10} or category_code = #{category11} or category_code = #{category12}) and (sell_tf = 'false' and hide_tf = 'false') order by board_date asc
+	</select>
+	<select id="hotList" resultType="goods_boardDTO" parameterType="category">
+		select * from goods_board where category_code = #{category1} or category_code = #{category2}  or category_code = #{category3} or category_code = #{category4} or category_code = #{category5} or category_code = #{category6} or category_code = #{category7} or category_code = #{category8} or category_code = #{category9} or category_code = #{category10} or category_code = #{category11} or category_code = #{category12} order by interest_count asc
+	</select>
+	
+	
+	
+	<select id="listLocation" resultType="goods_boardDTO" parameterType="category">
+		select * from goods_board where (category_code = #{category1,jdbcType=VARCHAR} or category_code = #{category2,jdbcType=VARCHAR}  or category_code = #{category3,jdbcType=VARCHAR} or category_code = #{category4,jdbcType=VARCHAR} or category_code = #{category5,jdbcType=VARCHAR} or category_code = #{category6,jdbcType=VARCHAR} or category_code = #{category7,jdbcType=VARCHAR} or category_code = #{category8,jdbcType=VARCHAR} or category_code = #{category9,jdbcType=VARCHAR} or category_code = #{category10,jdbcType=VARCHAR} or category_code = #{category11,jdbcType=VARCHAR} or category_code = #{category12,jdbcType=VARCHAR})
+		 and (sell_tf = 'false' and hide_tf = 'false')
+	</select>
+	<select id="listSearchInLocation" resultType="goods_boardDTO" parameterType="category">
+		select * from goods_board where (category_code = #{category1,jdbcType=VARCHAR} or category_code = #{category2,jdbcType=VARCHAR}  or category_code = #{category3,jdbcType=VARCHAR} or category_code = #{category4,jdbcType=VARCHAR} or category_code = #{category5,jdbcType=VARCHAR} or category_code = #{category6,jdbcType=VARCHAR} or category_code = #{category7,jdbcType=VARCHAR} or category_code = #{category8,jdbcType=VARCHAR} or category_code = #{category9,jdbcType=VARCHAR} or category_code = #{category10,jdbcType=VARCHAR} or category_code = #{category11,jdbcType=VARCHAR} or category_code = #{category12,jdbcType=VARCHAR})
+		 and (subject like '%${keyword1}%' or content like '%${keyword1}%')
+		 and (sell_tf = 'false' and hide_tf = 'false')
+	</select>
+	<select id="selectAroundMarkers" resultType="goods_boardDTO" parameterType="category">
+		<![CDATA[
+		select * from goods_board where (category_code = #{category1,jdbcType=VARCHAR} or category_code = #{category2,jdbcType=VARCHAR}  or category_code = #{category3,jdbcType=VARCHAR} or category_code = #{category4,jdbcType=VARCHAR} or category_code = #{category5,jdbcType=VARCHAR} or category_code = #{category6,jdbcType=VARCHAR} or category_code = #{category7,jdbcType=VARCHAR} or category_code = #{category8,jdbcType=VARCHAR} or category_code = #{category9,jdbcType=VARCHAR} or category_code = #{category10,jdbcType=VARCHAR} or category_code = #{category11,jdbcType=VARCHAR} or category_code = #{category12,jdbcType=VARCHAR})
+		 and ((lat != 0 and lat != 999 and lng != 0 and lng != 999) and (lat >= #{lat} - #{latRate} and lat <= #{lat} + #{latRate} and lng >= #{lng} - #{lngRate} and lng <= #{lng} + #{lngRate}))										  
+		]]>
+	</select>
+	
+	
+	
+	<select id="getTotalA" resultType="int">
+		select count(*) as count from GOODS_BOARD
+	</select>
+	<select id="searchList" resultType="goods_boardDTO" parameterType="java.util.Map">
+		select * from goods_board where (subject like '%${keyword1}%' or content like '%${keyword2}%')
+	</select>
+	<select id="replyList" resultType="replyDTO" parameterType="int">
+		select * from reply where bno = #{bno} order by rno asc
+	</select>
+	<!-- !!!!!!!!!!!!!!!!!!!!!!! -->
+	<select id="saleList" resultType="goods_boardDTO">
+		select * from goods_board where sell_tf = 'false' and hide_tf = 'false' 
+	</select>
+	<select id="saleCompleteList" resultType="goods_boardDTO">
+		select * from goods_board where sell_tf = 'true' and hide_tf = 'false'
+	</select>
+	<select id="mySaleList" resultType="goods_boardDTO" parameterType="String">
+		select * from goods_board where sell_tf = 'false' and hide_tf = 'false' and user_name = #{user_name}
+	</select>
+	<select id="mySaleCompleteList" resultType="goods_boardDTO" parameterType="String">
+		select * from goods_board where sell_tf = 'true' and hide_tf = 'false' and user_name = #{user_name}
+	</select>
+	<select id="hideList" resultType="goods_boardDTO" parameterType="String">
+		select * from goods_board where hide_tf = 'true' and user_name = #{user_name}
+	</select>
+	<select id="reviewIngList" resultType="goods_boardDTO" parameterType="String">
+		select * from goods_board where review_tf = 'false' and user_name != #{user_name}
+	</select>
+	<select id="reviewCompleteList" resultType="goods_boardDTO" parameterType="String">
+		select * from goods_board where review_tf = 'true' and user_name != #{user_name}
+	</select>
+	<update id="modifyName" parameterType="java.util.Map">
+		update goods_board set user_name = #{muser_name} where user_name = #{user_name}
+	</update>
+	<select id="interestList" resultType="goods_boardDTO" parameterType="int">
+		select * from goods_board where num = #{num}
+	</select>
+	<!-- 거래완료 상태로 변경 -->
+	<update id="changeSellComplete" parameterType="int">
+		update goods_board set sell_tf = 'true' where num = #{num}
+	</update>
+	<!-- 거래중 상태로 변경 -->
+	<update id="changeSale" parameterType="int">
+		update goods_board set sell_tf = 'false' where num = #{num}
+	</update>
+	<!-- 숨기기 -->
+	<update id="hideOn" parameterType="int">
+		update goods_board set hide_tf = 'true' where num = #{num}
+	</update>
+	<!-- 숨김 해제 -->
+	<update id="hideOff" parameterType="int">
+		update goods_board set hide_tf = 'false' where num = #{num}
+	</update>
+	<!-- 리뷰 작성 완료 -->
+	<update id="reviewComplete" parameterType="int">
+		update goods_board set review_tf = 'true' where num = #{num}
+	</update>
+	<!-- 관심개수 + 1 -->
+	<update id="interestOn" parameterType="int">
+		update goods_board set interest_count = interest_count + 1 where num = #{num}
+	</update>
+	<!-- 관심 개수 -1 -->
+	<update id="interestOff" parameterType="int">
+		update goods_board set interest_count = interest_count - 1 where num = #{num}
+	</update>
+	<!--  -->
+	<update parameterType="int" id="downReC">
+		update goods_board set reply_count = reply_count-1 where num = #{num}
+	</update>
+	<delete parameterType="int" id="replyDelete">
+		delete reply where bno = #{bno}
+	</delete>
+	<delete parameterType="int" id="replyOneDelete">
+		delete reply where rno = #{rno}
+	</delete>
+	<update id="replyName" parameterType="java.util.Map">
+      	update tbl_reply set user_name = #{muser_name} where user_name = #{user_name}
+   	</update>
+   
+   
+   	<update id="updateDate" parameterType="int">
+   		update goods_board set board_date = sysdate where num = ${num}
+   	</update>
+</mapper>

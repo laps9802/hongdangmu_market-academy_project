@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting name="cacheEnabled" value="true"/>
+		<setting name="useGeneratedKeys" value="true"/>
+		<setting name="defaultExecutorType" value="REUSE"/>
+		<setting name="defaultStatementTimeout" value="3000"/>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+
+	<!-- 클래스에 별명 설정 -->
+	<typeAliases>
+		<typeAlias type="users.bean.UsersDTO" alias="usersDTO"/> 
+		<typeAlias type="goods_board.bean.Goods_boardDTO" alias="goods_boardDTO"/>
+		<typeAlias type="goods_board.bean.Category" alias="category"/>
+		<typeAlias type="goods_board.bean.ReplyDTO" alias="replyDTO"/>
+		<typeAlias type="int_tbl.bean.Int_tblDTO" alias="int_tblDTO"/>
+		<typeAlias alias="reviewDTO" type="review.bean.ReviewDTO"/>
+		<typeAlias type="msg.bean.MsgDTO" alias="msgDTO"/>
+		<typeAlias type="buy_tbl.bean.Buy_tblDTO" alias="buyDTO"/>
+		<typeAlias type="Purchase_list.bean.Purchase_listDTO" alias="pListDTO"/>
+	</typeAliases>
+	
+	<!-- SQL Mapper 설정 -->
+	 <mappers>
+		<mapper resource="mybatis/users-mapping.xml"/>
+		<mapper resource="mybatis/Goods_board-mapping.xml" />
+		<mapper resource="mybatis/Int_tbl-mapping.xml" />
+		<mapper resource="mybatis/review-mapping.xml"/>
+		<mapper resource="mybatis/msg-mapping.xml"/>
+		<mapper resource="mybatis/buy-mapping.xml"/>
+		<mapper resource="mybatis/Purchase_list.xml"/>
+	</mappers> 
+	
+</configuration>

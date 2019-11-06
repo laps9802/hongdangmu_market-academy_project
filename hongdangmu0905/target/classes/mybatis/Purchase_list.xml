@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.Purchase_listMapper">
+	<insert id="write" parameterType="pListDTO">
+		insert into Purchase_list values(#{user_code},#{goods_num}, 'false',sysdate)
+	</insert>
+	<delete id="update" parameterType="String">
+		update Purchase_list set review_tf ='true' where goods_num =#{goods_num} and review_tf='false'
+	</delete>
+	<select id="myPurchase_list" resultType="pListDTO" parameterType="String">
+		select * from Purchase_list where user_code=#{user_code} ORDER by BUY_DATE desc
+	</select>
+</mapper>

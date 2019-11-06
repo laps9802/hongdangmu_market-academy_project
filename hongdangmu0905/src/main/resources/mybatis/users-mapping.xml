@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.usersMapper">
+	<insert parameterType="usersDTO" id="write">
+		insert into users values (users_seq_num.nextval, #{user_name}, #{user_photo}, 
+		#{user_area} ,#{manner}, #{reply_percent}, #{sales_count}, #{purchase_count},
+		#{interest_count},sysdate,#{user_tel},#{user_email1},#{user_email2},#{lat},#{lng})
+	</insert>
+	<select id="isExistId" parameterType="int"
+		resultType="String">
+		select user_code from users where user_code = #{user_code}
+	</select>
+	<delete id="delete" parameterType="int">
+		delete users where user_code =
+		#{user_code}
+	</delete>
+	<update id="modify" parameterType="usersDTO">
+		UPDATE users
+		set user_name = #{user_name}, user_photo =#{user_photo},
+		user_area=#{user_area}, manner=#{manner}, reply_percent=#{reply_percent}, sales_count=#{sales_count},
+		purchase_count=#{purchase_count}, interest_count=#{interest_count},
+		user_tel=#{user_tel}, user_email1=#{user_email1}, user_email2=#{user_email2},
+		lng=#{lng}, lat=#{lat} where user_code = #{user_code}
+	</update>
+	<select id="selectOne" resultType="usersDTO"
+		parameterType="String">
+		select * from users where user_name = #{user_name}
+	</select>
+	<select id="selectOne2" resultType="usersDTO"
+		parameterType="int">
+		select * from users where user_code = #{user_code}
+	</select>
+	<select id="selectList" resultType="usersDTO"
+		parameterType="java.util.Map">
+		<![CDATA[
+		select * from(select rownum rn, tt.* from
+		(select * from users order by user_code asc) tt)
+		where rn>=#{startNum} and rn<=#{endNum}
+		]]>
+	</select>
+	<select id="list" resultType="usersDTO">
+		<![CDATA[
+		select * from users
+		]]>
+	</select>
+	<select id="getTotalMember" resultType="int">
+		select count(*) as count
+		from users
+	</select>
+	<select id="selectNameList" resultType="usersDTO" parameterType="java.util.Map">
+		select * from users where (user_name like  '%${user_name}%')
+	</select>
+	<select parameterType="java.util.Map" id="login" resultType="usersDTO">
+		select * from users where user_name = #{user_name} and user_tel = #{user_tel}
+	</select>
+	
+	
+	<select id="selectIsMember" resultType="int" parameterType="String">
+		select count(*) as count from users where user_tel = #{users_tel}
+	</select>
+	
+	<insert id="insertUser" parameterType="usersDTO">
+		insert into users values 
+		(users_seq_num.nextval, #{user_name}, #{user_photo}, 
+		#{user_area} ,#{manner}, #{reply_percent}, #{sales_count}, #{purchase_count},
+		#{interest_count},sysdate,#{user_tel},#{user_email1},#{user_email2},#{lat},#{lng})
+	</insert>
+	
+	<select id="selectExistingUser" resultType="usersDTO" parameterType="String">
+		select * from users where user_tel = #{users_tel}
+	</select>
+	
+	<select id="selectUserCode" resultType="int" parameterType="String">
+		select user_code from users where user_tel = #{user_tel}
+	</select>
+	
+	
+	<update id="mannerUpdate" parameterType="java.util.Map">
+		update users set manner = manner + (#{manner}) where user_name = #{user_name}	
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

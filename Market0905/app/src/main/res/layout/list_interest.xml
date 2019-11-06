@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20px"
+        android:layout_marginTop="40px"
+        android:layout_marginRight="20px"
+        android:layout_marginBottom="40px"
+        android:orientation="horizontal"
+        android:paddingBottom="20px">
+
+        <ImageView
+            android:id="@+id/imageView_goods_image"
+            android:layout_width="300px"
+            android:layout_height="300px"
+            android:layout_margin="20px"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="400px"
+            android:layout_marginRight="20px"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="20px">
+
+            <TextView
+                android:id="@+id/textView_board_subject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="2"
+                android:text="TextView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/com_accountkit_whatsapp_enable_border" />
+
+            <TextView
+                android:id="@+id/textView_board_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="2"
+                android:text="TextView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView_complet_trade"
+                    android:layout_width="130px"
+                    android:layout_height="60px"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/complete_trade" />
+
+                <TextView
+                    android:id="@+id/textView_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="TextView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView_interest_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:srcCompat="@android:drawable/btn_star_big_off" />
+
+        <ImageView
+            android:id="@+id/imageView_interest_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:padding="5px">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_marginBottom="40px"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20px"
+            android:layout_marginBottom="40px"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView_reply_count2"
+                android:layout_width="30dp"
+                android:layout_height="19dp"
+                app:srcCompat="@drawable/reply" />
+
+            <TextView
+                android:id="@+id/textView_reply_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <ImageView
+                android:id="@+id/imageView_interest_count2"
+                android:layout_width="30dp"
+                android:layout_height="19dp"
+                app:srcCompat="@drawable/interest2" />
+
+            <TextView
+                android:id="@+id/textView_interest_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LocationInitActivity">
+
+    <TextView
+        android:id="@+id/locInit_text_text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:gravity="center"
+        android:text="현재 위치는"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:id="@+id/locInit_text_gpsPlaceName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/locInit_text_text3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="이 위치가 맞습니까?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/locInit_btn_ok"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_dark"
+            android:text="네!" />
+
+        <Button
+            android:id="@+id/locInit_btn_updateLocation"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_dark"
+            android:text="다시 설정하기" />
+
+    </LinearLayout>
+</LinearLayout>

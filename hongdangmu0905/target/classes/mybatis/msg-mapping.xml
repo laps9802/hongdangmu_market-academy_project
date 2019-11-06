@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.MsgMapper">
+	<insert id="msgWrite" parameterType="msgDTO">
+		insert into msg values (#{user_photo},#{user_area},#{bno},msg_seq.nextval,#{sender},#{recipient},#{msgTitle},#{msgContent},sysdate)
+	</insert>
+	<select id="msgList" resultType="msgDTO" parameterType="String">
+		select * from msg where mno in (select max(mno) from msg where recipient = #{recipient} group by sender,recipient)order by msgDate desc
+	</select>
+	<select id="msgRoomList" resultType="msgDTO" parameterType="java.util.Map">
+		select *from msg where (recipient = #{sender} and sender = #{recipient}) or (sender = #{sender} and recipient = #{recipient})order by mno asc
+	</select>
+</mapper>
